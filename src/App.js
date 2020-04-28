@@ -1,9 +1,19 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import data from './data/products.json'
 import Logo from './icons/logo'
 import Cart from './icons/cart'
 import './App.css'
 
 function App() {
+  const [loading, setLoading] = useState(false)
+
+  useEffect (() => {
+    if (!data) {
+      setLoading(true)
+    }
+    return setLoading(false)
+  }, [])
+
   return (
     <div className='App'>
       <div className='wrapper'>
@@ -30,6 +40,26 @@ function App() {
             <button>XXL</button>
           </div>
         </div>
+        {loading ? (
+          'Loading...'
+        ) : (
+          <div className='products'>
+            {data.map(({image_link, title, size, color, price, availability}) => (
+              <div className='product'>
+                <img src={image_link} alt={title} />
+                <div className='availability'>{availability}</div>
+                <button>{price}</button>
+                <div className='productDetails'>
+                  <div>{title}</div>
+                  <div>
+                    <span className='size'>{size}</span>
+                    <span>{color}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 .wrapper {
   margin: 0 auto;
   width: 70%;
-  padding: 48px 0;
+  padding: 48px 0 20px;
 }
 
 header {
@@ -18,7 +18,7 @@ header {
 }
 
 .filters {
-  padding: 48px 0;
+  padding: 24px 0;
 }
 
 .filters span {
@@ -28,7 +28,7 @@ header {
 
 .filters button {
   width: 72px;
-  height: 28px;
+  height: 26px;
   white-space: nowrap;
   background-color: black;
   color: white;
@@ -37,4 +37,65 @@ header {
   margin: 4px;
   font-weight: 600;
   font-size: 12px;
+  cursor: pointer;
+}
+
+.products {
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-wrap: wrap;
+}
+
+.product {
+  width: 48%;
+  padding-bottom: 28px;
+  position: relative;
+}
+
+.product img {
+  width: 100%;
+}
+
+.product button {
+  width: 128px;
+  height: 32px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 2px;
+  font-size: 14px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 64px;
+  right: 12px;
+}
+
+.product .availability {
+  width: 128px;
+  height: 32px;
+  background-color: red;
+  border-radius: 2px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 16px;
+  line-height: 38px;
+  position: absolute;
+  bottom: 100px;
+  right: 12px;
+}
+
+.productDetails {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  padding-top: 4px;
+}
+
+.productDetails span {
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+.productDetails .size {
+  padding-right: 12px;
 }
