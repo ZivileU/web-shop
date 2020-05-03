@@ -3,7 +3,14 @@ import {string} from 'prop-types'
 import classnames from 'classnames'
 import './FilterButton.scss'
 
-const FilterButton = ({filterName, setProductFilters, colors, sizes, colorFilters, sizeFilters}) => {
+const FilterButton = ({
+  filterName,
+  setProductFilters,
+  colors,
+  sizes,
+  colorFilters,
+  sizeFilters
+}) => {
   const [isOn, toggleIsOn] = useState(false)
 
   const toggleFilter = ({currentFilters, allFilters}) => {

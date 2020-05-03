@@ -15,9 +15,15 @@ function App() {
   const colorFilters = ['Black', 'Rose Nude', 'White', 'Grey', 'Navy']
   const sizeFilters = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
 
-  // const filterBy = ({productFilters, data}) => {
-  //   return data.filter(colors)
-  // }
+  const filterBy = () => {
+    if (colors.length > 0 && sizes.length > 0) {
+      return data.filter(product => colors.includes(product.color) && sizes.includes(product.size))
+    }
+    if (colors.length > 0 || sizes.length > 0) {
+      return data.filter(product => colors.includes(product.color) || sizes.includes(product.size))
+    }
+    return data
+  }
 
   useEffect (() => {
     if (!data) {
@@ -26,7 +32,7 @@ function App() {
     return setLoading(false)
   }, [])
 
-  console.log(productFilters)
+  console.log(sizes.length)
 
   return (
     <div className='App'>
@@ -69,7 +75,7 @@ function App() {
           'Loading...'
         ) : (
           <div className='products'>
-            {data.map(({image_link, title, size, color, price, availability, id}) => (
+            {filterBy().map(({image_link, title, size, color, price, availability, id}) => (
               <div className='product' key={id}>
                 <img src={image_link} alt={title} />
                 <div className='availability'>{availability}</div>
