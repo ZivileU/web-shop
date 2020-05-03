@@ -75,7 +75,7 @@ function App() {
           'Loading...'
         ) : (
           <div className='products'>
-            {filterBy().map(({image_link, title, size, color, price, availability, id}) => (
+            {filterBy().sort((left, right) => left.color.localeCompare(right.color)).map(({image_link, title, size, color, price, availability, id}) => (
               <div className='product' key={id}>
                 <img src={image_link} alt={title} />
                 <div className='availability'>{availability}</div>
