@@ -7,6 +7,7 @@ import './App.scss'
 
 function App() {
   const [loading, setLoading] = useState(false)
+  const [cart, addToCart] = useState([])
   const [productFilters, setProductFilters] = useState({
     colors: [],
     sizes: []
@@ -32,7 +33,7 @@ function App() {
     return setLoading(false)
   }, [])
 
-  console.log(sizes.length)
+  console.log(cart)
 
   return (
     <div className='App'>
@@ -79,7 +80,11 @@ function App() {
               <div className='product' key={id}>
                 <img src={image_link} alt={title} />
                 <div className='availability'>{availability}</div>
-                <button>{price}</button>
+                <button
+                  onClick={() => addToCart([...cart, id])}
+                >
+                  {price}
+                </button>
                 <div className='productDetails'>
                   <div>{title}</div>
                   <div>
