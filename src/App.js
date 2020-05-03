@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import FilterButton from './components/filterButton/FilterButton'
 import data from './data/products.json'
 import Logo from './icons/logo'
 import Cart from './icons/cart'
@@ -10,9 +11,9 @@ function App() {
     colors: [],
     sizes: []
   })
-  const [isOn, toggleIsOn] = useState(false)
-
   const {colors, sizes} = productFilters
+  const colorFilters = ['Black', 'Rose Nude', 'White', 'Grey', 'Navy']
+  const sizeFilters = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
 
   // const filterBy = ({productFilters, data}) => {
   //   return data.filter(colors)
@@ -25,7 +26,7 @@ function App() {
     return setLoading(false)
   }, [])
 
-  console.log(colors)
+  console.log(productFilters)
 
   return (
     <div className='App'>
@@ -35,86 +36,33 @@ function App() {
           <Cart />
         </header>
         <div className='filters'>
-          <div className='colorFilter'>
+          <div>
             <span>Filter by color: </span>
-            <button
-              className={isOn ? 'on' : ''}
-              onClick={() => {
-                setProductFilters({
-                  colors:
-                    colors.includes('Black')
-                      ? colors.filter(color => color !== 'Black')
-                      : [...colors, 'Black'],
-                  sizes: [...sizes]
-                })
-                toggleIsOn(!isOn)}
-              }
-            >
-              Black
-            </button>
-            <button
-              className={isOn ? 'on' : ''}
-              onClick={() => {
-                setProductFilters({
-                  colors:
-                    colors.includes('Rose Nude')
-                      ? colors.filter(color => color !== 'Rose Nude')
-                      : [...colors, 'Rose Nude'],
-                  sizes: [...sizes]
-                })
-                toggleIsOn(!isOn)}
-              }
-            >
-              Rose Nude
-            </button>
-            <button
-              onClick={() => setProductFilters({colors: [...colors, 'White'], sizes: [...sizes]})}
-            >
-              White
-            </button>
-            <button
-              onClick={() => setProductFilters({colors: [...colors, 'Grey'], sizes: [...sizes]})}
-            >
-              Grey
-            </button>
-            <button
-              onClick={() => setProductFilters({colors: [...colors, 'Navy'], sizes: [...sizes]})}
-            >
-              Navy
-            </button>
+            {colorFilters.map((color) =>
+              <FilterButton
+                filterName={color}
+                key={color}
+                setProductFilters={setProductFilters}
+                colors={colors}
+                sizes={sizes}
+                colorFilters={colorFilters}
+                sizeFilters={sizeFilters}
+              />
+            )}
           </div>
-          <div className='sizeFilter'>
+          <div>
             <span>Filter by size: </span>
-            <button
-              onClick={() => setProductFilters({colors: [...colors], sizes: [...sizes, 'XS']})}
-            >
-              XS
-            </button>
-            <button
-              onClick={() => setProductFilters({colors: [...colors], sizes: [...sizes, 'S']})}
-            >
-              S
-            </button>
-            <button
-              onClick={() => setProductFilters({colors: [...colors], sizes: [...sizes, 'M']})}
-            >
-              M
-            </button>
-            <button
-              onClick={() => setProductFilters({colors: [...colors], sizes: [...sizes, 'L']})}
-            >
-              L
-            </button>
-            <button
-              onClick={() => setProductFilters({colors: [...colors], sizes: [...sizes, 'XL']})}
-            >
-              XL
-            </button>
-            <button
-              onClick={() => setProductFilters({colors: [...colors], sizes: [...sizes, 'XLL']})}
-            >
-              XXL
-            </button>
+            {sizeFilters.map((size) =>
+              <FilterButton
+                filterName={size}
+                key={size}
+                setProductFilters={setProductFilters}
+                colors={colors}
+                sizes={sizes}
+                colorFilters={colorFilters}
+                sizeFilters={sizeFilters}
+              />
+            )}
           </div>
         </div>
         {loading ? (
