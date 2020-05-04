@@ -1,4 +1,9 @@
-.drawerWrapper {
+body.drawer.content.open {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.drawer {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -40,7 +45,8 @@
     right: 0;
     height: 100%;
     width: 30%;
-    padding: 48px 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     &:not(.open) {
       transition-duration: 150ms;
@@ -50,13 +56,81 @@
       opacity: 1;
     }
 
-    .cartButton {
-      position: absolute;
-      top: 66px;
-      right: 20px;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
+    header {
+      position: sticky;
+      top: 0;
+      background-color: white;
+      height: 72px;
+      display: flex;
+      justify-content: flex-end;
+
+      .cartButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 24px;
+      }
+    }
+
+    .emptyState {
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .cartProducts {
+      display: flex;
+      flex-direction: column;
+      padding: 0 24px;
+      font-size: 16px;
+
+      .cartProduct {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        max-width: 100%;
+        padding: 16px 0;
+        border-bottom: 2px solid grey;
+
+        img {
+          width: 45%;
+          padding-right: 12px;
+        }
+
+        .details {
+          padding-right: 12px;
+
+          .title {
+            font-size: 18px;
+            padding-bottom: 12px;
+            overflow-wrap: break-word;
+          }
+
+          span {
+            padding-right: 8px;
+          }
+        }
+
+        .price {
+          white-space: nowrap;
+        }
+      }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      background-color: white;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      > div {
+        width: 100%;
+        padding: 24px;
+        border-top: 2px solid grey;
+        font-size: 24px;
+      }
     }
   }
 }

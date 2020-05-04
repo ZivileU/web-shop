@@ -35,8 +35,6 @@ function App() {
     return setLoading(false)
   }, [])
 
-  console.log(cart)
-
   return (
     <div className='App'>
       <div className='wrapper'>
@@ -44,7 +42,7 @@ function App() {
           <Drawer
             open={openDrawer}
             setOpenDrawer={setOpenDrawer}
-            products={cart}
+            productIds={cart}
           />
         }
         <header>
@@ -87,24 +85,26 @@ function App() {
           'Loading...'
         ) : (
           <div className='products'>
-            {filterBy().sort((left, right) => left.color.localeCompare(right.color)).map(({image_link, title, size, color, price, availability, id}) => (
-              <div className='product' key={id}>
-                <img src={image_link} alt={title} />
-                <div className='availability'>{availability}</div>
-                <button
-                  onClick={() => addToCart([...cart, id])}
-                >
-                  {price}
-                </button>
-                <div className='productDetails'>
-                  <div>{title}</div>
-                  <div>
-                    <span className='size'>{size}</span>
-                    <span>{color}</span>
+            {filterBy().sort((left, right) => left.color.localeCompare(right.color))
+              .map(({image_link, title, size, color, price, availability, id}) => (
+                <div className='product' key={id}>
+                  <img src={image_link} alt={title} />
+                  <div className='availability'>{availability}</div>
+                  <button
+                    onClick={() => addToCart([...cart, id])}
+                  >
+                    {price}
+                  </button>
+                  <div className='productDetails'>
+                    <div>{title}</div>
+                    <div>
+                      <span className='size'>{size}</span>
+                      <span>{color}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            }
           </div>
         )}
       </div>
