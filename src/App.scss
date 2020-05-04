@@ -3,6 +3,12 @@
   width: 70%;
   padding: 48px 0 20px;
 
+  .emptyState {
+    padding-top: 40px;
+    font-size: 16px;
+    text-align: center;
+  }
+
   header {
     display: flex;
     justify-content: flex-end;

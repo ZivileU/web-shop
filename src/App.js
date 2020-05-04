@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import FilterButton from './components/filterButton/FilterButton'
 import Drawer from './components/drawer/Drawer'
 import data from './data/products.json'
@@ -7,7 +7,6 @@ import Cart from './icons/cart'
 import './App.scss'
 
 function App() {
-  const [loading, setLoading] = useState(false)
   const [cart, toggleAddToCart] = useState([])
   const [openDrawer, setOpenDrawer] = useState(false)
   const [productFilters, setProductFilters] = useState({
@@ -28,12 +27,7 @@ function App() {
     return data
   }
 
-  useEffect (() => {
-    if (!data) {
-      setLoading(true)
-    }
-    return setLoading(false)
-  }, [])
+  const filteredProducts = filterBy().sort((left, right) => left.color.localeCompare(right.color))
 
   return (
     <div className='App'>
@@ -82,12 +76,11 @@ function App() {
             )}
           </div>
         </div>
-        {loading ? (
-          'Loading...'
-        ) : (
-          <div className='products'>
-            {filterBy().sort((left, right) => left.color.localeCompare(right.color))
-              .map(({image_link, title, size, color, price, availability, id}) => (
+        {filteredProducts.length === 0
+          ? <div className='emptyState'>No results found</div>
+          : (
+            <div className='products'>
+              {filteredProducts.map(({image_link, title, size, color, price, availability, id}) => (
                 <div className='product' key={id}>
                   <img src={image_link} alt={title} />
                   <div className='availability'>{availability}</div>
@@ -104,10 +97,10 @@ function App() {
                     </div>
                   </div>
                 </div>
-              ))
-            }
-          </div>
-        )}
+              ))}
+            </div>
+          )
+        }
       </div>
     </div>
   )
