@@ -8,7 +8,7 @@ import './App.scss'
 
 function App() {
   const [loading, setLoading] = useState(false)
-  const [cart, addToCart] = useState([])
+  const [cart, toggleAddToCart] = useState([])
   const [openDrawer, setOpenDrawer] = useState(false)
   const [productFilters, setProductFilters] = useState({
     colors: [],
@@ -43,6 +43,7 @@ function App() {
             open={openDrawer}
             setOpenDrawer={setOpenDrawer}
             productIds={cart}
+            toggleAddToCart={toggleAddToCart}
           />
         }
         <header>
@@ -91,7 +92,7 @@ function App() {
                   <img src={image_link} alt={title} />
                   <div className='availability'>{availability}</div>
                   <button
-                    onClick={() => addToCart([...cart, id])}
+                    onClick={() => toggleAddToCart([...cart, id])}
                   >
                     {price}
                   </button>

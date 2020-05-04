@@ -4,14 +4,16 @@ import data from '../../data/products.json'
 import Cart from '../../icons/cart'
 import './Drawer.scss'
 
-const Drawer = ({open, productIds, setOpenDrawer}) => {
+const Drawer = ({open, productIds, setOpenDrawer, toggleAddToCart}) => {
   const cartProducts = data.filter(product => productIds.includes(product.id))
+
   const totalPrice = () => {
     let prices = []
     cartProducts.forEach(product => prices.push(parseFloat(product.price.split(' ')[0])))
     const total = prices.reduce((a, b) => a + b, 0)
     return `${total}.00 EUR`
   }
+  console.log(productIds)
 
   return (
     <div className='drawer'>
@@ -38,6 +40,14 @@ const Drawer = ({open, productIds, setOpenDrawer}) => {
                         <span>{color}</span>
                       </div>
                       <div className='price'>{price}</div>
+                      <button
+                        title='Remove from cart'
+                        onClick={() => toggleAddToCart(
+                          productIds.filter(productId => productId !== id)
+                        )}
+                      >
+                        X
+                      </button>
                     </div>
                   ))
                 }
