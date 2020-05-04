@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import classnames from 'classnames'
 import data from '../../data/products.json'
 import Cart from '../../icons/cart'
@@ -13,7 +13,15 @@ const Drawer = ({open, productIds, setOpenDrawer, toggleAddToCart}) => {
     const total = prices.reduce((a, b) => a + b, 0)
     return `${total}.00 EUR`
   }
-  console.log(productIds)
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    document.body.style.paddingRight = '15px'
+    return () => {
+      document.body.style.overflow = 'unset'
+      document.body.style.paddingRight = '0'
+    }
+  }, [])
 
   return (
     <div className='drawer'>

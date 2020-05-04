@@ -85,6 +85,7 @@ function App() {
                   <img src={image_link} alt={title} />
                   <div className='availability'>{availability}</div>
                   <button
+                    title='Add to cart'
                     onClick={() => toggleAddToCart([...cart, id])}
                   >
                     {price}
