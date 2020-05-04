@@ -7,7 +7,10 @@ import './Drawer.scss'
 const Drawer = ({open, productIds, setOpenDrawer}) => {
   const cartProducts = data.filter(product => productIds.includes(product.id))
   const totalPrice = () => {
-    return 0
+    let prices = []
+    cartProducts.forEach(product => prices.push(parseFloat(product.price.split(' ')[0])))
+    const total = prices.reduce((a, b) => a + b, 0)
+    return `${total}.00 EUR`
   }
 
   return (
