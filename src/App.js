@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import FilterButton from './components/filterButton/FilterButton'
+import Drawer from './components/drawer/Drawer'
 import data from './data/products.json'
 import Logo from './icons/logo'
 import Cart from './icons/cart'
@@ -8,6 +9,7 @@ import './App.scss'
 function App() {
   const [loading, setLoading] = useState(false)
   const [cart, addToCart] = useState([])
+  const [openDrawer, setOpenDrawer] = useState(false)
   const [productFilters, setProductFilters] = useState({
     colors: [],
     sizes: []
@@ -38,9 +40,18 @@ function App() {
   return (
     <div className='App'>
       <div className='wrapper'>
+        {openDrawer &&
+          <Drawer
+            open={openDrawer}
+            setOpenDrawer={setOpenDrawer}
+            products={cart}
+          />
+        }
         <header>
           <Logo />
-          <Cart />
+          <button onClick={() => setOpenDrawer(true)}>
+            <Cart />
+          </button>
         </header>
         <div className='filters'>
           <div>

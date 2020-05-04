@@ -1,0 +1,62 @@
+.drawerWrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  .overlay {
+    position: absolute;
+    background-color: dimgray;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition-property: opacity;
+    transition-duration: 300ms;
+    transition-timing-function: linear;
+
+    &:not(.open) {
+      transition-duration: 200ms;
+    }
+
+    &.open {
+      opacity: 0.6;
+    }
+  }
+
+  .content {
+    position: absolute;
+    background-color: white;
+    transition-property: top, left, width, height, opacity, transform;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+    opacity: 0;
+    overflow: hidden;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30%;
+    padding: 48px 20px;
+
+    &:not(.open) {
+      transition-duration: 150ms;
+    }
+
+    &.open {
+      opacity: 1;
+    }
+
+    .cartButton {
+      position: absolute;
+      top: 66px;
+      right: 20px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
