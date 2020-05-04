@@ -42,7 +42,7 @@ function App() {
         }
         <header>
           <Logo />
-          <button onClick={() => setOpenDrawer(true)}>
+          <button onClick={() => requestAnimationFrame(() => setOpenDrawer(true))}>
             <Cart />
           </button>
         </header>

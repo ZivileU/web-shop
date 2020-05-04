@@ -1,8 +1,3 @@
-body.drawer.content.open {
-  height: 100vh;
-  overflow-y: hidden;
-}
-
 .drawer {
   position: fixed;
   width: 100%;
@@ -24,7 +19,7 @@ body.drawer.content.open {
     transition-timing-function: linear;
 
     &:not(.open) {
-      transition-duration: 200ms;
+      transition-duration: 500ms;
     }
 
     &.open {
