@@ -38,28 +38,28 @@ const Drawer = ({open, productIds, setOpenDrawer, toggleAddToCart}) => {
         {productIds.length === 0
           ? <div className='emptyState'>Add products by clicking on the price button</div>
           : (
-              <div className='cartProducts'>
-                {cartProducts.map(({image_link, title, id, price, size, color}) => (
-                    <div className='cartProduct' key={id}>
-                      <img src={image_link} alt={title} />
-                      <div className='details'>
-                        <div className='title'>{title}</div>
-                        <span>{size}</span>
-                        <span>{color}</span>
-                      </div>
-                      <div className='price'>{price}</div>
-                      <button
-                        title='Remove from cart'
-                        onClick={() => toggleAddToCart(
-                          productIds.filter(productId => productId !== id)
-                        )}
-                      >
-                        X
-                      </button>
+            <div className='cartProducts'>
+              {cartProducts.map(({image_link, title, id, price, size, color}) => (
+                  <div className='cartProduct' key={id}>
+                    <img src={image_link} alt={title} />
+                    <div className='details'>
+                      <div className='title'>{title}</div>
+                      <span>{size}</span>
+                      <span>{color}</span>
                     </div>
-                  ))
-                }
-              </div>
+                    <div className='price'>{price}</div>
+                    <button
+                      title='Remove from cart'
+                      onClick={() => toggleAddToCart(
+                        productIds.filter(productId => productId !== id)
+                      )}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))
+              }
+            </div>
           )
         }
         {(productIds.length > 0) &&
