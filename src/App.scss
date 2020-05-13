@@ -12,16 +12,28 @@
   header {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 
     .logo {
       width: 25%;
     }
 
     button {
+      position: relative;
       background-color: transparent;
       border: none;
       cursor: pointer;
       margin-left: 37%;
+
+      .productsInCart {
+        color: red;
+        font-weight: 600;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-right: -4px;
+        margin-top: -4px;
+      }
     }
   }
 

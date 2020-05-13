@@ -44,13 +44,10 @@
       height: 72px;
       display: flex;
       justify-content: flex-end;
-      box-shadow: 3px 3px 20px #ccc;
+      box-shadow: 1px 1px 10px #ccc;
 
       .cartButton {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 24px;
+        margin: 24px;
       }
     }
 
@@ -110,7 +107,7 @@
       display: flex;
       align-items: center;
       width: inherit;
-      box-shadow: 3px 3px 20px #ccc;
+      box-shadow: 1px 1px 10px #ccc;
 
       > div {
         width: 100%;

@@ -44,6 +44,9 @@ function App() {
           <Logo />
           <button onClick={() => setOpenDrawer(true)}>
             <Cart />
+            {cart.length > 0
+              && <span className='productsInCart'>{cart.length}</span>
+            }
           </button>
         </header>
         <div className='filters'>
